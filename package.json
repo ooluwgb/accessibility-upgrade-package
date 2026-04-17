@@ -1,0 +1,52 @@
+{
+  "name": "citizen-portal",
+  "version": "1.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "@axe-core/react": "^4.8.2",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "jest-axe": "^8.0.0",
+    "pa11y-ci": "^3.1.0",
+    "serve": "^14.2.1",
+    "start-server-and-test": "^2.0.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --watchAll=false",
+    "test:watch": "react-scripts test",
+    "test:a11y": "react-scripts test --watchAll=false --testPathPattern=__tests__",
+    "lint": "eslint \"src/**/*.{js,jsx}\"",
+    "serve:build": "serve -s build -l 3000",
+    "pa11y": "start-server-and-test serve:build http://localhost:3000 \"pa11y-ci\""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:jsx-a11y/recommended"
+    ],
+    "plugins": ["jsx-a11y"],
+    "rules": {
+      "jsx-a11y/no-autofocus": "warn",
+      "jsx-a11y/label-has-associated-control": "error",
+      "jsx-a11y/anchor-is-valid": "error"
+    }
+  },
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+  },
+  "jest": {
+    "resetMocks": false
+  }
+}
