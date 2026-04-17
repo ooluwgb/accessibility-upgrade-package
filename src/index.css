@@ -148,7 +148,8 @@ body {
   font-weight: 600;
 }
 
-/* Mobile: collapse list behind a toggle. */
+/* Mobile: collapse list behind a toggle. On desktop, the collapsed modifier
+   is ignored so every link is always visible. */
 @media (max-width: 640px) {
   .nav__toggle {
     display: inline-block;
@@ -159,7 +160,7 @@ body {
     padding: 0.5rem;
   }
 
-  .nav__list[hidden] {
+  .nav__list--collapsed {
     display: none;
   }
 }

@@ -38,8 +38,12 @@ describe('Modal', () => {
     const user = userEvent.setup();
     render(<ModalHarness />);
     await user.click(screen.getByRole('button', { name: /open dialog/i }));
+    // Use an exact name to avoid matching the backdrop's "Close dialog by
+    // clicking outside" button, which contains "Close dialog" as a substring.
     await waitFor(() =>
-      expect(screen.getByRole('button', { name: /close dialog/i })).toHaveFocus()
+      expect(
+        screen.getByRole('button', { name: 'Close dialog' })
+      ).toHaveFocus()
     );
   });
 
@@ -65,5 +69,9 @@ describe('Modal', () => {
     const dialog = screen.getByRole('dialog');
     expect(dialog).toHaveAttribute('aria-modal', 'true');
     expect(dialog).toHaveAccessibleName('Confirm action');
+    // Exactly one primary "Close dialog" button is exposed to assistive tech.
+    expect(
+      screen.getByRole('button', { name: 'Close dialog' })
+    ).toBeInTheDocument();
   });
 });

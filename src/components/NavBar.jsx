@@ -25,9 +25,11 @@ export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
-  // On mobile, the list is hidden when menuOpen is false; on wider screens
-  // the CSS overrides `hidden` so the list is always visible.
-  const listHiddenOnMobile = !menuOpen;
+  // The `nav__list--collapsed` modifier is only honored on narrow viewports
+  // via media query, so desktop users always see every link regardless of
+  // the menuOpen state. This avoids the native `hidden` attribute, which
+  // CSS cannot override without a cascade-breaking `!important`.
+  const listClassName = `nav__list${menuOpen ? '' : ' nav__list--collapsed'}`;
 
   return (
     <nav aria-label="Main navigation" className="nav">
@@ -44,11 +46,7 @@ export default function NavBar() {
         </span>
       </button>
 
-      <ul
-        id="main-nav-list"
-        className="nav__list"
-        hidden={listHiddenOnMobile ? true : undefined}
-      >
+      <ul id="main-nav-list" className={listClassName}>
         {navLinks.map((link) => {
           const isCurrent = location.pathname === link.href;
           return (

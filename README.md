@@ -1,5 +1,7 @@
 # CitizenConnect - Public Services Portal
 
+[![Accessibility CI](https://github.com/ooluwgb/accessibility-upgrade-package/actions/workflows/accessibility.yml/badge.svg?branch=main)](https://github.com/ooluwgb/accessibility-upgrade-package/actions/workflows/accessibility.yml)
+
 React 18 reference implementation of a public-facing citizen services portal.
 This "after" package ships the accessibility upgrades described in
 `AccessibilityUpgradePackageWCAG2-2-2.pdf`.

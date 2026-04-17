@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { axe } from 'jest-axe';
 import App from '../App';
@@ -26,12 +26,12 @@ describe('App', () => {
   });
 
   it('exposes exactly one <main> landmark and one <h1>', () => {
-    const { getAllByRole } = render(
+    render(
       <MemoryRouter initialEntries={['/']}>
         <App />
       </MemoryRouter>
     );
-    expect(getAllByRole('main')).toHaveLength(1);
-    expect(getAllByRole('heading', { level: 1 })).toHaveLength(1);
+    expect(screen.getAllByRole('main')).toHaveLength(1);
+    expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
   });
 });

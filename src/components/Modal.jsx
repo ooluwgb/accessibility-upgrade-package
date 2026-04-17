@@ -93,10 +93,16 @@ export default function Modal({ isOpen, onClose, title, children }) {
 
   return (
     <>
+      {/* The backdrop is a click-to-dismiss convenience for mouse users. It
+          is exposed as a button (instead of a bare <div> with onClick) so
+          axe does not flag a non-interactive element with a click handler,
+          and it is taken out of the tab order. Its label is intentionally
+          distinct from the Close button so `getByRole('button', { name:
+          'Close dialog' })` resolves to a single element. */}
       <button
         type="button"
         className="modal-backdrop"
-        aria-label="Close dialog"
+        aria-label="Close dialog by clicking outside"
         tabIndex={-1}
         onClick={onClose}
       />
